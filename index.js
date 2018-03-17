@@ -1,6 +1,7 @@
 const admin = require('firebase-admin')
 const functions = require('firebase-functions')
 
+const firestoreReader = require('./firestore')
 const realtimeDBReader = require('./realtimedb')
 
 const getDestinationPath = () => {
@@ -46,5 +47,9 @@ const buildBackup = (reader, dest = getDestinationPath) =>
   })
 
 module.exports = {
+  firestore: {
+    collection: dest => buildBackup(firestoreReader.collection, dest),
+    document: dest => buildBackup(firestoreReader.document, dest)
+  },
   realtimeDb: dest => buildBackup(realtimeDBReader, dest)
 }
