@@ -1,0 +1,31 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/firebase-backup
+
+    docker:
+      - image: node:8
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - fbb-{{ .Branch }}-{{ checksum "package.json" }}
+            - fbb-{{ .Branch }}
+            - fbb-master-{{ checksum "package.json" }}
+            - fbb-master
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - run:
+          name: Running tests
+          command: npm run test
+
+      - save_cache:
+          key: fbb-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/firebase-backup/node_modules
