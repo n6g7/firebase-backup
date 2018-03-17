@@ -35,7 +35,7 @@ const storeBackup = (data, path) => {
   })
 }
 
-const buildBackup = (reader, dest = getDestinationPath) =>
+const buildBackup = reader => (path = null, dest = getDestinationPath) =>
   functions.https.onRequest((req, res) => {
     reader()
       .then(data => storeBackup(data, dest()))
@@ -48,8 +48,8 @@ const buildBackup = (reader, dest = getDestinationPath) =>
 
 module.exports = {
   firestore: {
-    collection: dest => buildBackup(firestoreReader.collection, dest),
-    document: dest => buildBackup(firestoreReader.document, dest)
+    collection: buildBackup(firestoreReader.collection),
+    document: buildBackup(firestoreReader.document)
   },
-  realtimeDb: dest => buildBackup(realtimeDBReader, dest)
+  realtimeDb: buildBackup(realtimeDBReader)
 }
