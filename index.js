@@ -37,7 +37,7 @@ const storeBackup = (data, path) => {
 
 const buildBackup = reader => (path = null, dest = getDestinationPath) =>
   functions.https.onRequest((req, res) => {
-    reader()
+    reader(path)
       .then(data => storeBackup(data, dest()))
       .then(() => res.status(200).send('Backup saved'))
       .catch(error => {
