@@ -1,6 +1,6 @@
 {
   "name": "firebase-backup",
-  "version": "0.0.3-a",
+  "version": "0.0.3-b",
   "description": "A set of firebase functions to backup realtime db / firestore.",
   "author": "Nathan Gaberel <nathan@gnab.fr>",
   "main": "index.js",

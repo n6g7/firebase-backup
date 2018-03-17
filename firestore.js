@@ -5,7 +5,7 @@ exports.collection = path =>
     .firestore()
     .collection(path)
     .get()
-    .then(snapshot => snapshot.docs.map(doc => doc.data())
+    .then(snapshot => snapshot.docs.map(doc => doc.data()))
 
 exports.document = path =>
   admin
