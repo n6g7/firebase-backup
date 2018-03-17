@@ -45,8 +45,6 @@ const buildBackup = (reader, dest = getDestinationPath) =>
       })
   })
 
-const backup = {
+module.exports = {
   realtimeDb: dest => buildBackup(realtimeDBReader, dest)
 }
-
-module.exports = backup.realtimeDb()
