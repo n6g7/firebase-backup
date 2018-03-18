@@ -23,7 +23,7 @@ Backup files are stored in firebase storage.
 
 ## To do
 
-- [ ] Support firestore
+- [X] Support firestore
 - [ ] Support other types of functions (pubsub, ...?)
 - [ ] Option: only backup a subsection of the database (selector)
 - [ ] Option: custom path for backup file
